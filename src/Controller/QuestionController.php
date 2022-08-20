@@ -10,8 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuestionController extends AbstractController
 {
+
     #[Route('/question/ask', name: 'question_form')]
-    public function index(Request $request): Response
+    public function ask(Request $request): Response
     {
         $formQuestion = $this->createForm(QuestionType::class);
         $formQuestion->handleRequest($request);
