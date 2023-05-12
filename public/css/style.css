@@ -1,6 +1,6 @@
 :root {
-    --primary: #12cbc4;
-    --primary-light: #e7f9f9;
+    --primary: #B92B27;
+    --primary-light: #e0a6a4;
     --accent: #0652dd;
     --warning: #ea2027;
     --success: #009432;
@@ -178,6 +178,10 @@ ul {
     max-width: var(--max-width)
 }
 
+.app-content{
+    background-color: var(--gray-light);
+}
+
 .btn {
     border-radius: var(--border-radius);
     padding: 10px 20px;
@@ -204,6 +208,44 @@ ul {
     border: 1px solid var(--primary);
     color: var(--primary);
     background-color: var(--color-primary);
+}
+
+.block{
+    padding: 20px;
+    border-radius: var(--border-radius);
+    background-color: white;
+    box-shadow: var(--box-shadow);
+}
+
+.form-row{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 20px;
+}
+
+.form-row label{
+    margin-bottom: 5px;
+    font-weight: var(--font-weight-semi-bold);
+    color: var(--color-dark);
+}
+
+.form-row input, textarea{
+    font-family: var(--font-family);
+    border: 0;
+    border-radius: var(--border-radius);
+    padding: 10px 15px;
+    background-color: var(--gray-light);
+    font-size: var(--font-size-regular);
+}
+
+.form-row textarea{
+    min-height: 150px;
+}
+
+.form-errors{
+    color: var(--warning);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-semi-bold);
 }
 
 /* HEADER */
@@ -257,6 +299,8 @@ header {
 .active{
     border-left: 5px solid var(--primary);
     background-color: var(--primary-light);
+    font-weight: 700;
+    color: white;
 }
 
 
