@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Question;
+use App\Form\CommentType;
 use App\Form\QuestionType;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +27,7 @@ class QuestionController extends AbstractController
             $question->setNbResponse(0)
                     ->setRating(0)
                     ->setCreatedAt(new \DateTimeImmutable());
+
             $em->persist($question);
             $em->flush();
             $this->addFlash('succes', 'Votre question à été ajouté');
@@ -37,8 +41,27 @@ class QuestionController extends AbstractController
 
     
     #[Route('/question/{id}', name: 'question_show')]
-    public function show(Request $request, Question $question): Response{
+    public function show(Request $request, Question $question, EntityManagerInterface $em): Response{
+
+        $comment= new Comment();
+        $commentForm= $this->createForm(CommentType::class, $comment);
+        $commentForm->handleRequest($request);
+
+        if($commentForm->isSubmitted()&& $commentForm->isValid()){
+            $comment->setCreatedAt(new DateTimeImmutable())
+                    ->setRating(0)
+                    ->setQuestion($question);
+            
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('succes', 'Votre réponse a été publiée.');
+            return $this->redirect($request->getUri());
+        }
         
-            return $this->render('question/show.html.twig', ['question' => $question]);
+            return $this->render('question/show.html.twig', [
+                'question' => $question,
+                'form'=> $commentForm->createView(),
+            ]);
     }    
 }   

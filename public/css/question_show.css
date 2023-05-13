@@ -7,7 +7,11 @@
     padding: 5px 10px;
 }
 
-.question-text{
+.question-text, .question-response-text {
     line-height: 30px;
     white-space: pre-wrap;
+}
+
+small{
+    opacity: .7;
 }

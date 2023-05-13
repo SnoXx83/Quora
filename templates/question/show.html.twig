@@ -18,5 +18,27 @@
         </div>
         <p class="question-text"> {{question.content}} </p>
         <div class="separator"></div>
+        <div class="pb-20">
+            Nombre de réponses: {{ question.comments|length}}
+        </div>
+
+        {% for comment in question.comments %}
+            <div class="question-response-elem mb-20">
+                <div class="d-flex flex-row-nowrap align-items-center pb-10">
+                    <img class="avatar mr-10" src="https://randomuser.me/api/portraits/women/74.jpg" alt="Photo de Profil">
+                    <p class="clickable">Celine Decourd</p>
+                    <small class="ml-auto"> {{ comment.createdAt | format_datetime(pattern= 'd MM Y', locale= 'fr') }} </small>
+                </div>
+                <p class="question-response-text"> {{ comment.content }} </p>
+            </div>
+        {% endfor %}
+
+        <h3 class="pb-20">Votre réponse</h3>
+        <div class="comment-form">
+            {{ form_start(form) }}
+                {{ form_rest(form) }}
+                <button class="btn btn-primary">Soumettre</button>
+            {{ form_end(form) }}
+        </div>
     </div>
 {% endblock body %}
