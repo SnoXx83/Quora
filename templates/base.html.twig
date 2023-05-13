@@ -4,15 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <script src="{{asset('js/index.js')}}"></script>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% endblock stylesheets %}
 </head>
 
 <body class="d-flex flex-column">
     {{ include('partials/_header.html.twig') }}
+    {% for cat, list in app.flashes %}
+        {% for msg in list %}
+            <div class="flash flash-{{cat}}">
+                {{msg}}
+            </div>
+        {% endfor %}
+    {% endfor %}
     <div class="app-content flex-fill d-flex flex-row-nowrap justify-content-center">
         <div class="content flex-fill d-flex flex-row-nowrap py-50">
             {{ include('partials/_sidebar.html.twig') }}

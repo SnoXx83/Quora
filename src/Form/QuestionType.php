@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Question;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,7 +22,7 @@ class QuestionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Question::class
         ]);
     }
 }

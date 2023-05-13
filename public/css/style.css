@@ -1,6 +1,6 @@
 :root {
     --primary: #B92B27;
-    --primary-light: #e0a6a4;
+    --primary-light: #ce9b9b;
     --accent: #0652dd;
     --warning: #ea2027;
     --success: #009432;
@@ -132,6 +132,9 @@ small {
 .mr-5 {
     margin-right: 5px;
 }
+.mr-10{
+    margin-right: 10px;
+}
 
 .mr-20 {
     margin-right: 20px;
@@ -143,6 +146,10 @@ small {
 
 .mb-20 {
     margin-bottom: 20px;
+}
+
+.ml-auto{
+    margin-left: auto;
 }
 
 /* Paddings */
@@ -162,6 +169,10 @@ small {
     padding-bottom: 20px;
 }
 
+.pb-30{
+    padding-bottom: 30px;
+}
+
 .py-20 {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -172,7 +183,10 @@ small {
     padding-bottom: 50px;
 }
 
-
+.separator{
+    border-bottom: 1px solid var(--gray-light);
+    margin: 30px 0px;
+}
 
 /* GENERAL */
 
@@ -296,6 +310,18 @@ header {
     outline: 0;
     background-color: var(--gray-light);
     font-size: 16px;
+}
+
+/* Message Flash */
+
+.flash{
+    padding: 20px;
+    text-align: center;
+    color: var(--primary-light);
+}
+
+.flash-succes{
+    background-color: var(--success);
 }
 
 /* SIDEBAR */
