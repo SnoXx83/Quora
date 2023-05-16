@@ -8,8 +8,11 @@ framework:
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
     session:
-        handler_id: null
-        cookie_secure: auto
+        handler_id: session.handler.native_file
+        cookie_secure: true
+        cookie_lifetime: 604800
+        gc_maxlifetime: 604800
+        sid_bits_per_character: 5
         cookie_samesite: lax
         storage_factory_id: session.storage.factory.native
 

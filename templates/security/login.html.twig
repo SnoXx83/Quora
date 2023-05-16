@@ -1,10 +1,39 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    Connexion    
+Connexion
 {% endblock title %}
 
 {% block body %}
-    <h1>Connexion</h1>
-{% endblock body %}
+<div class="block">
+    <h2 class="pb_30">Connexion</h2>
 
+    <form action="{{ path('login') }}" method="post">
+        <div class="form-row">
+            <label for="email">Email</label>
+            <input type="text" name="_username" id="email" value="{{ username }}" autofocus>
+        </div>
+
+        <div class="form-row">
+            <label for="password">Mot de passe </label>
+            <input type="text" name="_password" id="password">
+        </div>
+
+        <div class="form-row">
+            <label for="remember_me">
+                <input type="checkbox" name="_remember_me" id="_remember_me">
+                Se souvenir de moi
+            </label>
+        </div>
+        <input type="hidden" name="_csrf_token" value=" {{ csrf_token('authenticate') }} ">
+
+        {% if error %}
+        <ul class="form-errors pb-20">
+            <li> {{ errors.messageKey | trans(error.messageData, 'security') }} </li>
+        </ul>
+
+        {% endif %}
+        <button class="btn btn-primary">Connexion</button>
+    </form>
+</div>
+{% endblock body %}
