@@ -1,0 +1,7 @@
+<div class="d-flex flex-column mr-20 align-items-center">
+    <i class="fas fa-arrow-up {{ rating > 0 ? 'rating-up' : '' }}"></i>
+    <p class="text-small {{ rating > 0 ? 'rating-up' : rating < 0 ? 'rating-down' : '' }} ">
+    {{ rating }} 
+    </p>
+    <i class="fas fa-arrow-down {{ rating < 0 ? 'rating-down' : '' }} "></i>
+</div>

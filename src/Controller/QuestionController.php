@@ -51,6 +51,8 @@ class QuestionController extends AbstractController
             $comment->setCreatedAt(new DateTimeImmutable())
                     ->setRating(0)
                     ->setQuestion($question);
+
+            $question->setNbResponse($question->getNbResponse()+ 1);
             
             $em->persist($comment);
             $em->flush();
