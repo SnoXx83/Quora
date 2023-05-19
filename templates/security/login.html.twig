@@ -29,7 +29,7 @@ Connexion
 
         {% if error %}
         <ul class="form-errors pb-20">
-            <li> {{ errors.messageKey | trans(error.messageData, 'security') }} </li>
+            <li> {{ error.messageKey | trans(error.messageData, 'security') }} </li>
         </ul>
 
         {% endif %}

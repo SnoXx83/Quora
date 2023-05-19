@@ -28,7 +28,7 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('succes', 'Bienvenue sur Quora');
+            $this->addFlash('success', 'Bienvenue sur Quora');
             return $this->redirectToRoute('login');
         }
 

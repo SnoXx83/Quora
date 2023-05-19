@@ -27,7 +27,7 @@
         Nombre de réponses: {{ question.comments|length}}
     </div> #}
 
-    {% for comment in question.comments %}
+    {% for comment in question.comments |sort((a, b)=> b.createdAt <=> a.createdAt) %}
     <div class="d-flex flex-row-nowrap mb-20">
         {% include "partials/_rating.html.twig" with {rating: comment.rating, from:'comment', id:comment.id} %}
         <div class="d-flex flex-fill flex-column">

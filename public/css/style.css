@@ -328,7 +328,7 @@ header {
     color: white;
 }
 
-.flash-succes{
+.flash-success{
     background-color: var(--success);
 }
 
@@ -379,5 +379,5 @@ header {
 
 footer {
     background-color: var(--footer-bg);
-    color: var(--primary-light);
+    color: var(--gray-light);
 }

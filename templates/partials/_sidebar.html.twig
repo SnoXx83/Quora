@@ -13,13 +13,23 @@
             <i class="fas fa-home mr-5"></i>
             Liste des questions
         </a>
-        <a href="#">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a href=" {{ path('show_questions') }} "
+        {% if app.request.pathinfo == path('show_questions') %}
+            class="active"
+        {% endif %}
+        >
             <i class="fas fa-pen mr-5"></i>
             Mes questions
         </a>
-        <a href="#">
+        <a href=" {{ path('show_comments') }} "
+        {% if app.request.pathinfo == path('show_comments') %}
+            class="active"
+        {% endif %}
+        >
             <i class="fas fa-puzzle-piece mr-5"></i>
             Mes réponses
         </a>
+        {% endif %}
     </ul>
 </div>

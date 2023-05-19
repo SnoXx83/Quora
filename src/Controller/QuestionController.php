@@ -35,7 +35,7 @@ class QuestionController extends AbstractController
 
             $em->persist($question);
             $em->flush();
-            $this->addFlash('succes', 'Votre question à été ajouté');
+            $this->addFlash('success', 'Votre question à été ajouté');
             return $this->redirectToRoute('home');
         }
 
@@ -70,7 +70,7 @@ class QuestionController extends AbstractController
                 $em->persist($comment);
                 $em->flush();
 
-                $this->addFlash('succes', 'Votre réponse a été publiée.');
+                $this->addFlash('success', 'Votre réponse a été publiée.');
                 return $this->redirect($request->getUri());
             }
 
