@@ -13,11 +13,11 @@
                 <p class="question-text"> {{ question.content }} </p>
             </a>
             <div class="d-flex flex-row justify-content-between">
-                <div class="d-flex flex-row align-items-center">
+                <a href=" {{ path('user', {id: question.author.id }) }} " class="d-flex flex-row align-items-center">
                     <img src=" {{ question.author.picture }} " alt="Profil Picture"
                         class="avatar mr-20">
                     <small>Demandé par : <span class="clickable"> {{ question.author.fullname }} </span> </small>
-                </div>
+                </a>
                 <div class="d-flex flex-row align-items-center">
                     <i class="fas fa-comment mr-20"></i>
                     <p>{{ question.nbResponse }}</p>

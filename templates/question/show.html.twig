@@ -29,13 +29,13 @@
 
     {% for comment in question.comments %}
     <div class="d-flex flex-row-nowrap mb-20">
+        {% include "partials/_rating.html.twig" with {rating: comment.rating, from:'comment', id:comment.id} %}
         <div class="d-flex flex-fill flex-column">
-            <div class="d-flex flex-row-nowrap align-items-center pb-10">
-                {% include "partials/_rating.html.twig" with {rating: comment.rating, from:'comment', id:comment.id} %}
+            <a href=" {{ path('user', {id: comment.author.id}) }} " class="d-flex flex-row-nowrap align-items-center pb-10">
                 <img class="avatar mr-10" src=" {{ comment.author.picture }} " alt="Photo de Profil">
                 <p class="clickable"> {{ comment.author.fullname }} </p>
                 <small class="ml-auto"> {{ comment.createdAt | ago(locale = 'fr') }} </small>
-            </div>
+            </a>
             <p class="question-response-text"> {{ comment.content }} </p>
         </div>
     </div>
