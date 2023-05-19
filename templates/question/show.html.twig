@@ -1,48 +1,55 @@
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/question_show.css') }}">
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/question_show.css') }}">
 {% endblock stylesheets %}
 
 {% block title %}
-    {{ question.title }}
+{{ question.title }}
 {% endblock title %}
 
 {% block body %}
-    <div class="block">
-        <div class="d-flex flex-row-nowrap align-items-center pb-30">
-            {% include "partials/_rating.html.twig" with {rating: question.rating, from: 'question', id: question.id} %}
-            <h3 class="mr-10"> {{ question.title }} </h3>
-            <div class="question-tag">QUESTION</div>
-            <img src="https://randomuser.me/api/portraits/men/20.jpg" alt="Photo de Profil" class="avatar ml-auto">
-        </div>
-        <p class="question-text"> {{question.content}} </p>
-        <div class="separator"></div>
-        <div class="pb-20">
-            Nombre de réponses: {{ question.comments|length}}
-        </div>
+<div class="block">
+    <div class="d-flex flex-row-nowrap align-items-center pb-30">
+        {% include "partials/_rating.html.twig" with {rating: question.rating, from: 'question', id: question.id} %}
+        <h3 class="mr-10"> {{ question.title }} </h3>
+        <div class="question-tag">QUESTION</div>
+        <img src=" {{ question.author.picture }} " alt="Photo de Profil" class="avatar ml-auto">
+    </div>
+    <p class="question-text"> {{question.content}} </p>
 
-        {% for comment in question.comments %}
-            <div class="d-flex flex-row-nowrap mb-20">
-                <div class="d-flex flex-fill flex-column">
-                    <div class="d-flex flex-row-nowrap align-items-center pb-10">
-                        {% include "partials/_rating.html.twig" with {rating: comment.rating, from:'comment', id:comment.id} %}
-                        <img class="avatar mr-10" src="https://randomuser.me/api/portraits/women/74.jpg" alt="Photo de Profil">
-                        <p class="clickable">Celine Decourd</p>
-                        <small class="ml-auto"> {{ comment.createdAt | ago(locale = 'fr') }} </small>
-                    </div>
-                    <p class="question-response-text"> {{ comment.content }} </p>
-                </div>
+    {% if question.comments is not empty %}
+    <div class="separator"></div>
+    {% endif %}
+
+    {# <div class="pb-20">
+        Nombre de réponses: {{ question.comments|length}}
+    </div> #}
+
+    {% for comment in question.comments %}
+    <div class="d-flex flex-row-nowrap mb-20">
+        <div class="d-flex flex-fill flex-column">
+            <div class="d-flex flex-row-nowrap align-items-center pb-10">
+                {% include "partials/_rating.html.twig" with {rating: comment.rating, from:'comment', id:comment.id} %}
+                <img class="avatar mr-10" src=" {{ comment.author.picture }} " alt="Photo de Profil">
+                <p class="clickable"> {{ comment.author.fullname }} </p>
+                <small class="ml-auto"> {{ comment.createdAt | ago(locale = 'fr') }} </small>
             </div>
-        {% endfor %}
-
-        <h3 class="pb-20">Votre réponse</h3>
-        <div class="comment-form">
-            {{ form_start(form) }}
-                {{ form_rest(form) }}
-                <button class="btn btn-primary">Soumettre</button>
-            {{ form_end(form) }}
+            <p class="question-response-text"> {{ comment.content }} </p>
         </div>
     </div>
+    {% endfor %}
+
+    {% if form is defined %}
+    <div class="separator"></div>
+    <h3 class="pb-20">Votre réponse</h3>
+    <div class="comment-form">
+        {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <button class="btn btn-primary">Soumettre</button>
+        {{ form_end(form) }}
+    </div>
+    {% endif %}
+</div>
 {% endblock body %}

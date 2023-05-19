@@ -6,7 +6,7 @@ Connexion
 
 {% block body %}
 <div class="block">
-    <h2 class="pb_30">Connexion</h2>
+    <h2 class="pb-30">Connexion</h2>
 
     <form action="{{ path('login') }}" method="post">
         <div class="form-row">
@@ -16,7 +16,7 @@ Connexion
 
         <div class="form-row">
             <label for="password">Mot de passe </label>
-            <input type="text" name="_password" id="password">
+            <input type="password" name="_password" id="password">
         </div>
 
         <div class="form-row">
@@ -33,7 +33,10 @@ Connexion
         </ul>
 
         {% endif %}
-        <button class="btn btn-primary">Connexion</button>
+        <button class="btn btn-primary mr-20">Connexion</button>
+        <span>
+            <a href=" {{ path('signup') }} ">Vous n'avez pas encore de compte ?</a>
+        </span>
     </form>
 </div>
 {% endblock body %}

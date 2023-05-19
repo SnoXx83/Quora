@@ -280,6 +280,10 @@ small {
     border-radius: 50%;
 }
 
+.avatar-lg{
+    width: 60px;
+}
+
 .clickable{
     color: var(--primary);
     font-weight: var(--font-weight-semi-bold);

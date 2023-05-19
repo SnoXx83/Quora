@@ -7,9 +7,20 @@
             <i class="fas fa-search"></i>
             <input type="text" name="" id="">
         </div>
-        <div>
-            <a href="{{path('signup')}}" class="btn btn-primary mr-5">Inscription</a>
-            <a href=" {{ path('login') }} " class="btn btn-primary-connexion">Connexion</a>
-        </div>
+
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <div class="d-flex flex-row-nowrap align-items-center">
+                <img class="avatar avatar-lg mr-10" src=" {{ app.user.picture }} " alt="Profile Picture">
+                <small>
+                    <a class="btn btn-primary"  href=" {{ path('logout') }} ">Déconnexion</a>
+                </small>
+            </div>
+            {% else %}
+            <div>
+                <a href="{{path('signup')}}" class="btn btn-primary mr-5">Inscription</a>
+                <a href=" {{ path('login') }} " class="btn btn-primary-connexion">Connexion</a>
+            </div>
+        {% endif %}
+
     </div>
 </header>
