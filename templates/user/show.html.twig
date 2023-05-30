@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ user.fullname }}
+{% endblock title %}
+
+{% block body %}
+    <div class="block mb-20">
+        <h2 class="pb-30"> {{ user.fullname }} </h2>
+        <div class="d-flex flex-row-nowrap">
+            <img src="{{ user.picture }}" alt="Profile Picture" class="mr-10 profile-picture">
+            <ul>
+                <li class="mb-10">
+                    <strong class="mr-10">Prenom: </strong>{{ user.firstname }}
+                </li>
+                <li class="mb-10">
+                    <strong class="mr-10">Nom: </strong>{{ user.lastname }}
+                </li>
+                <li class="mb-10">
+                    <strong class="mr-10">Email: </strong>{{ user.email }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="block mb-20">
+        <h3 class="pb-30">Ces questions</h3>
+        <ul>
+            {% for question in user.questions %}
+                <a href= "{{path('question_show', {id: question.id}) }} ">
+                    <li class="pb-30">{{ question.title }}</li>
+                </a>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="block mb-20">
+        <h3 class="pb-30">Ces Réponses</h3>
+        <ul>
+            {% for comment in user.comments %}
+                    <li class="pb-30">{{ comment.content | slice(0, 50) }} 
+                    {% if comment.content | length >= 51 %}
+                        ...
+                    {% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock body %}
