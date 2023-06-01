@@ -48,7 +48,7 @@ class QuestionController extends AbstractController
     }
 
     #[Route('/question/{id}', name: 'question_show')]
-    public function show(int $id,Request $request, QuestionRepository $questionRepo, EntityManagerInterface $em): Response
+    public function show(int $id, Request $request, QuestionRepository $questionRepo, EntityManagerInterface $em): Response
     {
         $question= $questionRepo->findOneWithAllCommentAndAuthors($id);
 

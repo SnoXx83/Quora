@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -18,16 +20,15 @@ class SecurityController extends AbstractController
 
     public function __construct(private $formLoginAuthenticator)
     {
-        
     }
     #[Route('/signup', name: 'signup')]
-    public function signup(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $userAuthenticator): Response
+    public function signup(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $userAuthenticator, MailerInterface $mailer): Response
     {
-        $user= new User();
+        $user = new User();
         $userForm = $this->createForm(UserType::class, $user);
         $userForm->handleRequest($request);
 
-        if($userForm->isSubmitted() && $userForm->isValid()){
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
             $hash = $passwordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($hash);
 
@@ -35,34 +36,45 @@ class SecurityController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Bienvenue sur Quora');
-            // return $this->redirectToRoute('login');
+
+            // Envoi d'email de bienvenue
+            $welcomeEmail= new TemplatedEmail();
+            $welcomeEmail->to($user->getEmail())
+                        ->subject('Bienvenue sur Quora')
+                        ->htmlTemplate('@email_templates/welcome.html.twig')
+                        ->context(
+                            ['username' => $user->getFirstname()]
+                        );
+
+            $mailer->send($welcomeEmail);
+
+
             return $userAuthenticator->authenticateUser($user, $this->formLoginAuthenticator, $request);
         }
 
         return $this->render('security/signup.html.twig', [
-            'form'=> $userForm->createView()
+            'form' => $userForm->createView()
         ]);
     }
 
     #[Route('/login', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if($this->getUser()){
+        if ($this->getUser()) {
             return $this->redirectToRoute('home');
         }
 
-        $error= $authenticationUtils->getLastAuthenticationError();
-        $username= $authenticationUtils->getLastUsername();
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $username = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig',[
-            'error'=> $error,
-            'username'=> $username
+        return $this->render('security/login.html.twig', [
+            'error' => $error,
+            'username' => $username
         ]);
     }
 
     #[Route('/logout', name: 'logout')]
     public function logout()
     {
-
     }
 }
