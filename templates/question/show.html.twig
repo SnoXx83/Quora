@@ -15,7 +15,7 @@
         {% include "partials/_rating.html.twig" with {rating: question.rating, from: 'question', id: question.id} %}
         <h3 class="mr-10"> {{ question.title }} </h3>
         <div class="question-tag">QUESTION</div>
-        <img src=" {{ question.author.picture }} " alt="Photo de Profil" class="avatar ml-auto">
+        <img src=" {{ asset(question.author.picture) }} " alt="Photo de Profil" class="avatar ml-auto">
     </div>
     <p class="question-text"> {{question.content}} </p>
 
@@ -32,7 +32,7 @@
         {% include "partials/_rating.html.twig" with {rating: comment.rating, from:'comment', id:comment.id} %}
         <div class="d-flex flex-fill flex-column">
             <a href=" {{ path('user', {id: comment.author.id}) }} " class="d-flex flex-row-nowrap align-items-center pb-10">
-                <img class="avatar mr-10" src=" {{ comment.author.picture }} " alt="Photo de Profil">
+                <img class="avatar mr-10" src=" {{ asset(comment.author.picture) }} " alt="Photo de Profil">
                 <p class="clickable"> {{ comment.author.fullname }} </p>
                 <small class="ml-auto"> {{ comment.createdAt | ago(locale = 'fr') }} </small>
             </a>
