@@ -2,8 +2,13 @@
 
 {% block stylesheets %}
 {{ parent() }}
-<link rel="stylesheet" href="{{ asset('css/question_show.css') }}">
+{{ encore_entry_link_tags('question') }}
+{# <link rel="stylesheet" href="{{ asset('css/question_show.css') }}"> #}
 {% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('question') }}
+{% endblock javascripts %}
 
 {% block title %}
 {{ question.title }}
