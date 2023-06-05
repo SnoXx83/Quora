@@ -46,7 +46,12 @@ class SecurityController extends AbstractController
             //Gestion de l'image de profil 
             $picture = $userForm->get('pictureFile')->getData();
             
-            $user->setPicture($uploaderPicture->uploadProfileImage($picture));
+            if(!$picture){
+                // Attribution d'une image par default
+                $user->setPicture('profiles/no_picture.jpeg');
+            }else{
+                $user->setPicture($uploaderPicture->uploadProfileImage($picture));
+            }
 
             $em->persist($user);
             $em->flush();

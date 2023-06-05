@@ -23,7 +23,7 @@ class UploaderPicture{
         $filename = bin2hex(random_bytes(10)) . '.' . $extension;
         $picture->move($folder, $filename);
 
-        if ($oldPicture) {
+        if ($oldPicture !== 'profiles/no_picture.jpeg') {
             $this->fs->remove($folder . '/' . pathinfo($oldPicture , PATHINFO_BASENAME));
         }
 
