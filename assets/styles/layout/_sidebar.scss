@@ -1,0 +1,28 @@
+/* SIDEBAR */
+
+.sidebar {
+    min-width: 200px;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    font-size: var(--font-size-small);
+}
+
+.sidebar-nav a:hover {
+    opacity: .8;
+    transition: opacity .4s;
+}
+
+.sidebar-nav a i {
+    color: var(--color-dark);
+}
+
+.active{
+    border-left: 5px solid var(--primary);
+    background-color: var(--primary-light);
+    font-weight: 700;
+    color: white;
+}

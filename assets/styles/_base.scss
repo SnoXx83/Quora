@@ -1,0 +1,49 @@
+/* GENERAL */
+
+.content {
+    max-width: var(--max-width)
+}
+
+.app-content{
+    background-color: var(--gray-light);
+}
+
+.block{
+    padding: 20px;
+    border-radius: var(--border-radius);
+    background-color: white;
+    box-shadow: var(--box-shadow);
+}
+
+.block-shadow:hover{
+    cursor: pointer;
+    box-shadow: none;
+    transition: all .4s;
+    transform: scale(1.02);
+}
+
+.avatar{
+    width: 45px;
+    border-radius: 50%;
+}
+
+.avatar-lg{
+    width: 60px;
+}
+
+.clickable{
+    color: var(--primary);
+    font-weight: var(--font-weight-semi-bold);
+    cursor: pointer;
+}
+
+.text-small{
+    font-size: var(--font-size-small);
+}
+
+/* Profile */
+
+.profile-picture{
+    width: 150px;
+    border-radius: var(--border-radius);
+}
