@@ -1,11 +1,25 @@
+@use 'mixins';
+
+
 /* GENERAL */
 
 .content {
-    max-width: var(--max-width)
+    max-width: var(--max-width);
+    &-main{
+        padding: 50px 0;
+        @include mixins.xs{
+            padding: 0 0 50px 0;
+        }
+    }
+
 }
 
 .app-content{
     background-color: var(--gray-light);
+    padding: 20px;
+    @include mixins.xs{
+        padding: 10px;
+    }
 }
 
 .block{

@@ -1,9 +1,16 @@
+@use '../mixins';
+@use '../variables';
+
 /* HEADER */
 header {
     box-shadow: var(--box-shadow);
+    @include mixins.xs{
+        flex-direction: column;
+    }
 }
 
 .header-logo {
+    margin: 10px 0 10px 10px;
     max-width: 150px;
 }
 
@@ -12,9 +19,13 @@ header {
 }
 
 .header-search {
-    max-width: 400px;
+    margin: 0 15px;
     border-radius: var(--border-radius);
     background-color: var(--gray-light);
+    max-width: 400px;
+    @include mixins.xs{
+        display: none;
+    }
 }
 
 .header-search input {
@@ -22,4 +33,18 @@ header {
     outline: 0;
     background-color: var(--gray-light);
     font-size: 16px;
+}
+
+.burger{
+    font-size: 24px;
+    margin-right: 10px;
+
+}
+
+.menu-xs{
+    a{
+        margin: 10px 15px;
+    }
+    border-bottom: var(--border);
+    box-shadow: var(--box-shadow);
 }

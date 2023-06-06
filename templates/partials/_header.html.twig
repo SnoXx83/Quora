@@ -1,4 +1,4 @@
-<header class="d-flex flex-row-nowrap justify-content-center p20">
+<header class="d-flex  justify-content-center p20">
     <div class="content flex-fill d-flex flex-row-nowrap align-items-center justify-content-between">
         <a class="header-logo" href="{{path('home')}}">
             <img src="{{asset('build/images/logo.png')}}" alt="Logo">
@@ -9,19 +9,31 @@
         </div>
 
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <div class="d-flex flex-row-nowrap align-items-center">
-                <a href=" {{ path('current_user') }} ">
+        <div class="d-flex flex-row-nowrap align-items-center xs-hide">
+            <a href=" {{ path('current_user') }} ">
                 <img class="avatar avatar-lg mr-10" src=" {{ asset(app.user.picture) }} " alt="Profile Picture">
-                </a>
-                <small>
-                    <a class="btn btn-primary"  href=" {{ path('logout') }} ">Déconnexion</a>
-                </small>
-            </div>
-            {% else %}
-            <div>
-                <a href="{{path('signup')}}" class="btn btn-primary mr-5">Inscription</a>
-                <a href=" {{ path('login') }} " class="btn btn-primary-connexion">Connexion</a>
-            </div>
+            </a>
+            <small>
+                <a class="btn btn-primary" href=" {{ path('logout') }} ">Déconnexion</a>
+            </small>
+        </div>
+        {% else %}
+        <div class="xs-hide">
+            <a href="{{path('signup')}}" class="btn btn-primary mr-5">Inscription</a>
+            <a href=" {{ path('login') }} " class="btn btn-primary-stroke">Connexion</a>
+        </div>
+        {% endif %}
+        <div class="show-xs burger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+    <div class="menu-xs d-flex flex-column hidden">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a href=" {{ path('current_user') }} " class="btn btn-primary p-5">Profil</a>
+            <a href=" {{ path('logout') }} " class="btn btn-primary-stroke p-5">Déconnexion</a>
+        {% else %}
+        <a href=" {{ path('signup') }} " class="btn btn-primary mr-5">Inscription</a>
+        <a href=" {{ path('login') }} " class="btn btn-primary-stroke">Connexion</a>
         {% endif %}
 
     </div>

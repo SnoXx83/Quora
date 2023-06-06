@@ -3,7 +3,6 @@
 {% block stylesheets %}
 {{ parent() }}
 {{ encore_entry_link_tags('question') }}
-{# <link rel="stylesheet" href="{{ asset('css/question_show.css') }}"> #}
 {% endblock stylesheets %}
 
 {% block javascripts %}
@@ -18,9 +17,11 @@
 <div class="block">
     <div class="d-flex flex-row-nowrap align-items-center pb-30">
         {% include "partials/_rating.html.twig" with {rating: question.rating, from: 'question', id: question.id} %}
-        <h3 class="mr-10"> {{ question.title }} </h3>
-        <div class="question-tag">QUESTION</div>
-        <img src=" {{ asset(question.author.picture) }} " alt="Photo de Profil" class="avatar ml-auto">
+        <div class="d-flex flex-row-nowrap align-items-center justify-content-between flex-fill flex-column-xs">
+            <h3 class="mr-10"> {{ question.title }} </h3>
+            <div class="question-tag">QUESTION</div>
+            <img src=" {{ asset(question.author.picture) }} " alt="Photo de Profil" class="avatar ml-auto">    
+        </div>
     </div>
     <p class="question-text"> {{question.content}} </p>
 

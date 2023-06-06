@@ -1,3 +1,5 @@
+@use 'mixins';
+
 /* Flex */
 .d-flex {
     display: flex;
@@ -13,6 +15,11 @@
 
 .flex-column {
     flex-direction: column;
+    &-xs{
+        @include mixins.xs{
+            flex-direction: column;
+        }
+    }
 }
 
 .align-items-center {
@@ -117,4 +124,21 @@
 .separator{
     border-bottom: 1px solid var(--gray-light);
     margin: 30px 0px;
+}
+
+.xs-hide{
+    @include mixins.xs{
+        display: none;
+    }
+}
+
+.show-xs{
+    display: none;
+    @include mixins.xs{
+        display: inherit;
+    }
+}
+
+.hidden {
+    display: none;
 }

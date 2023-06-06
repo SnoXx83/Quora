@@ -1,7 +1,13 @@
+@use '../mixins';
+
 /* SIDEBAR */
 
 .sidebar {
     min-width: 200px;
+    margin-right: 20px;
+    @include mixins.xs{
+        margin-right: 0;
+    }
 }
 
 .sidebar-nav a {
