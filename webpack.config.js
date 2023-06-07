@@ -26,7 +26,7 @@ Encore
 
     .copyFiles({
         from: './assets/images',
-        pattern: /\.(png|jpg|jpeg|svg)$/,
+        pattern: /\.(png|jpg|jpeg|svg|gif)$/,
         // to path is relative to the build directery
         to: 'images/[path][name].[ext]'
     })
@@ -73,6 +73,7 @@ Encore
 
     // uncomment if you use React
     //.enableReactPreset()
+    .enableVueLoader();
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher

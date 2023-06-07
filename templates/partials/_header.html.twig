@@ -3,9 +3,15 @@
         <a class="header-logo" href="{{path('home')}}">
             <img src="{{asset('build/images/logo.png')}}" alt="Logo">
         </a>
-        <div class="header-search p-10 flex-fill">
-            <i class="fas fa-search"></i>
-            <input type="text" name="" id="">
+        <div id="search" class="header-search p-10 flex-fill d-flex flex-row align-items-center">
+            <i class="fas fa-search mr-10"></i>
+            <input @input="updateInput" ref="input" type="text" name="" id="" class="flex-fill">
+            <img v-if="isLoading" src="{{asset('build/images/loader.gif')}}" alt="Loader" class="header-search-loading">
+            <ul class="header-search-result d-flex flex-column" v-if="questions">
+                <a v-for="question in questions" :key="question.id" v-bind:href="'/question/' + question.id">
+                    ${ question.title }$
+                </a>
+            </ul>
         </div>
 
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}

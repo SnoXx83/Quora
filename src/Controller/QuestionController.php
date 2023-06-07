@@ -47,6 +47,16 @@ class QuestionController extends AbstractController
         ]);
     }
 
+    #[Route('/question/search/{search}', name: 'question_search', priority: 1)]
+    public function questionSearch(string $search="none", QuestionRepository $questionRepo){
+        if($search === "none"){
+            $questions = [];
+        }else{
+            $questions = $questionRepo->findBySearch($search);
+        }
+        return $this->json(json_encode($questions));
+    }
+
     #[Route('/question/{id}', name: 'question_show')]
     public function show(int $id, Request $request, QuestionRepository $questionRepo, EntityManagerInterface $em): Response
     {

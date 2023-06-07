@@ -23,8 +23,26 @@ header {
     border-radius: var(--border-radius);
     background-color: var(--gray-light);
     max-width: 400px;
+    position: relative;
     @include mixins.xs{
         display: none;
+    }
+    &-loading{
+        height: 30px;
+    }
+    &-result{
+        width: 100%;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        background-color: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 10px;
+
+        a{
+            padding: 10px;
+        }
     }
 }
 
@@ -33,6 +51,7 @@ header {
     outline: 0;
     background-color: var(--gray-light);
     font-size: 16px;
+    height: 30px;
 }
 
 .burger{
